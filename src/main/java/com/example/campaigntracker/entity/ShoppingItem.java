@@ -1,9 +1,8 @@
 package com.example.campaigntracker.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +11,7 @@ public class ShoppingItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int shoppingItemId;
 
+    @Column(nullable = false)
     private String name;
 
     public ShoppingItem() {

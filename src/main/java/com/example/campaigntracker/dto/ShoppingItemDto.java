@@ -2,13 +2,14 @@ package com.example.campaigntracker.dto;
 
 import java.util.Objects;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 public class ShoppingItemDto {
     @Null(message = "Shopping item id should not be present")
     private Integer shoppingItemId;
 
-    @NotBlank(message = "Name of shopping item is needed.")
+    @NotNull(message = "Name of shopping item is needed.")
     private String name;
 
     public ShoppingItemDto() {

@@ -1,9 +1,10 @@
 package com.example.campaigntracker.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -11,14 +12,24 @@ import java.util.Objects;
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int CampaignId;
+    private int campaignId;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String store;
+
+    @Column(nullable = false)
     private double price;
+
+    @Column(nullable = true)
     private LocalDate dateBegin;
+
+    @Column(nullable = true)
     private LocalDate dateEnd;
-    private boolean match;
+
+    private boolean meet;
 
     public Campaign() {
     }
@@ -29,18 +40,27 @@ public class Campaign {
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.match = false;
+        this.meet = false;
+    }
+
+    public Campaign(String name, String store, double price, LocalDate dateBegin, LocalDate dateEnd, boolean match) {
+        this.name = name;
+        this.store = store;
+        this.price = price;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
+        this.meet = match;
     }
 
     public Campaign(String name, String store, double price) {
         this.name = name;
         this.store = store;
         this.price = price;
-        this.match = false;
+        this.meet = false;
     }
 
     public int getCampaignId() {
-        return CampaignId;
+        return campaignId;
     }
 
     public String getName() {
@@ -83,12 +103,12 @@ public class Campaign {
         this.dateEnd = dateEnd;
     }
 
-    public boolean isMatch() {
-        return match;
+    public boolean isMeet() {
+        return meet;
     }
 
-    public void setMatch(boolean match) {
-        this.match = match;
+    public void setMeet(boolean meet) {
+        this.meet = meet;
     }
 
     @Override
@@ -96,24 +116,24 @@ public class Campaign {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Campaign campaign = (Campaign) o;
-        return Double.compare(campaign.price, price) == 0 && match == campaign.match && Objects.equals(name, campaign.name) && Objects.equals(store, campaign.store) && Objects.equals(dateBegin, campaign.dateBegin) && Objects.equals(dateEnd, campaign.dateEnd);
+        return Double.compare(campaign.price, price) == 0 && meet == campaign.meet && Objects.equals(name, campaign.name) && Objects.equals(store, campaign.store) && Objects.equals(dateBegin, campaign.dateBegin) && Objects.equals(dateEnd, campaign.dateEnd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, store, price, dateBegin, dateEnd, match);
+        return Objects.hash(name, store, price, dateBegin, dateEnd, meet);
     }
 
     @Override
     public String toString() {
         return "Campaign{" +
-                "CampaignId=" + CampaignId +
+                "campaignId=" + campaignId +
                 ", name='" + name + '\'' +
                 ", store='" + store + '\'' +
                 ", price=" + price +
                 ", dateBegin=" + dateBegin +
                 ", dateEnd=" + dateEnd +
-                ", match=" + match +
+                ", meet=" + meet +
                 '}';
     }
 }

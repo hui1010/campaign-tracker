@@ -1,25 +1,22 @@
 package com.example.campaigntracker.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class CampaignDto {
     @Null(message = "Campaign id should not be present.")
-    private Integer CampaignId;
+    private Integer campaignId;
 
-    @NotBlank(message = "Name of campaign is needed.")
+    @NotNull(message = "Name of campaign is needed.")
     @Size(min = 1)
     private String name;
 
-    @NotBlank(message = "Store is needed.")
+    @NotNull(message = "Store is needed.")
     @Size(min = 1)
     private String store;
 
-    @NotBlank(message = "Price is needed")
+    @NotNull(message = "Price is needed")
     @PositiveOrZero
     private Double price;
 
@@ -27,7 +24,7 @@ public class CampaignDto {
 
     private LocalDate dateEnd;
 
-    private Boolean match;
+    private Boolean meet;
 
     public CampaignDto() {
     }
@@ -38,32 +35,32 @@ public class CampaignDto {
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.match = false;
+        this.meet = false;
     }
 
     public CampaignDto(String name, String store, Double price) {
         this.name = name;
         this.store = store;
         this.price = price;
-        this.match = false;
+        this.meet = false;
     }
 
     public CampaignDto(Integer campaignId, String name, String store, Double price, LocalDate dateBegin, LocalDate dateEnd) {
-        CampaignId = campaignId;
+        this.campaignId = campaignId;
         this.name = name;
         this.store = store;
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.match = false;
+        this.meet = false;
     }
 
     public Integer getCampaignId() {
-        return CampaignId;
+        return campaignId;
     }
 
     public void setCampaignId(int campaignId) {
-        CampaignId = campaignId;
+        this.campaignId = campaignId;
     }
 
     public String getName() {
@@ -106,12 +103,12 @@ public class CampaignDto {
         this.dateEnd = dateEnd;
     }
 
-    public Boolean getMatch() {
-        return match;
+    public Boolean getMeet() {
+        return meet;
     }
 
-    public void setMatch(Boolean match) {
-        this.match = match;
+    public void setMeet(Boolean meet) {
+        this.meet = meet;
     }
 
     @Override
@@ -119,24 +116,24 @@ public class CampaignDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CampaignDto that = (CampaignDto) o;
-        return Objects.equals(name, that.name) && Objects.equals(store, that.store) && Objects.equals(price, that.price) && Objects.equals(dateBegin, that.dateBegin) && Objects.equals(dateEnd, that.dateEnd) && Objects.equals(match, that.match);
+        return Objects.equals(name, that.name) && Objects.equals(store, that.store) && Objects.equals(price, that.price) && Objects.equals(dateBegin, that.dateBegin) && Objects.equals(dateEnd, that.dateEnd) && Objects.equals(meet, that.meet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, store, price, dateBegin, dateEnd, match);
+        return Objects.hash(name, store, price, dateBegin, dateEnd, meet);
     }
 
     @Override
     public String toString() {
         return "CampaignDto{" +
-                "CampaignId=" + CampaignId +
+                "campaignId=" + campaignId +
                 ", name='" + name + '\'' +
                 ", store='" + store + '\'' +
                 ", price=" + price +
                 ", dateBegin=" + dateBegin +
                 ", dateEnd=" + dateEnd +
-                ", match=" + match +
+                ", meet=" + meet +
                 '}';
     }
 }

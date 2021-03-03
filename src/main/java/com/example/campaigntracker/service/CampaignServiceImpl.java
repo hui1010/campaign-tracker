@@ -84,8 +84,8 @@ public class CampaignServiceImpl implements CampaignService{
             campaign.setDateBegin(campaignDto.getDateBegin());
         if (!campaign.getDateEnd().isEqual(campaignDto.getDateEnd()))
             campaign.setDateEnd(campaignDto.getDateEnd());
-        if (campaign.isMatch() != campaignDto.getMatch())
-            campaign.setMatch(campaignDto.getMatch());
+        if (campaign.isMeet() != campaignDto.getMeet())
+            campaign.setMeet(campaignDto.getMeet());
         return getCampaignDto(campaignRepository.save(campaign));
     }
 
