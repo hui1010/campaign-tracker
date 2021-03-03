@@ -1,4 +1,4 @@
-package exception;
+package com.example.campaigntracker.exception;
 
 public class Violation {
     private final String fieldName;

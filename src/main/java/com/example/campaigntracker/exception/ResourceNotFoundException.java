@@ -1,4 +1,4 @@
-package exception;
+package com.example.campaigntracker.exception;
 
 public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException() {

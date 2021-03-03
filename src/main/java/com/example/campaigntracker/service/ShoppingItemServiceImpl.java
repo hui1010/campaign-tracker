@@ -2,6 +2,7 @@ package com.example.campaigntracker.service;
 import com.example.campaigntracker.data.ShoppingItemRepository;
 import com.example.campaigntracker.dto.ShoppingItemDto;
 import com.example.campaigntracker.entity.ShoppingItem;
+import com.example.campaigntracker.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.data.annotation.Transient;
@@ -72,10 +73,10 @@ public class ShoppingItemServiceImpl implements ShoppingItemService {
 
     @Override
     @Transactional
-    public boolean delete(int id) throws RuntimeException {
+    public boolean delete(int id) throws ResourceNotFoundException {
         boolean deleted = false;
         if (!shoppingItemRepository.findById(id).isPresent()){
-            throw new RuntimeException("Cannot find any loan with book id: " + id);
+            throw new ResourceNotFoundException("Cannot find any loan with book id: " + id);
         }
         if(shoppingItemRepository.existsById(id)) {
             shoppingItemRepository.delete(shoppingItemRepository.findById(id).get());

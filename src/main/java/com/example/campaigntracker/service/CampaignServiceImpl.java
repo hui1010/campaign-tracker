@@ -3,6 +3,7 @@ package com.example.campaigntracker.service;
 import com.example.campaigntracker.data.CampaignRepository;
 import com.example.campaigntracker.dto.CampaignDto;
 import com.example.campaigntracker.entity.Campaign;
+import com.example.campaigntracker.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
@@ -91,9 +92,9 @@ public class CampaignServiceImpl implements CampaignService{
 
     @Override
     @Transactional
-    public boolean delete(int campaignId) throws RuntimeException{
+    public boolean delete(int campaignId) throws ResourceNotFoundException{
         if (!campaignRepository.findById(campaignId).isPresent())
-            throw new RuntimeException("Can not find the library user with id: " + campaignId);
+            throw new ResourceNotFoundException("Can not find the library user with id: " + campaignId);
         boolean deleted = false;
         if (campaignRepository.existsById(campaignId)){
             campaignRepository.delete(campaignRepository.findById(campaignId).get());

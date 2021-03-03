@@ -1,4 +1,4 @@
-package exception;
+package com.example.campaigntracker.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

@@ -1,4 +1,4 @@
-package exception;
+package com.example.campaigntracker.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;
