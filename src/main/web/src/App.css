@@ -1,0 +1,151 @@
+body {
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+div.container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 20px;
+    overflow: auto;
+}
+
+div.campaigns, div.shopping-list {
+    width: 50%; 
+    margin: 0 40px;
+    overflow: auto;
+    max-width: 500px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button, .btn {   
+    background-color: steelblue;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+.btn-add {
+    background-color: rgb(90, 197, 58);    
+}
+
+.btn-close {
+    background-color: rgb(236, 85, 14);
+}
+
+.btn-block {
+   width: 50%;
+}
+
+.form-wrapper {
+    margin: 0 auto;
+    /* text-align: center; */
+    padding: 20px;
+}
+
+.form-control div {
+    margin: 10px 0;
+    
+}
+
+.form-control div input, .form-control div label {
+    display: block;
+    padding-bottom: 3px;
+    line-height: 1;
+    width: 100%;
+}
+
+.dropdown {
+    width: 100px;
+    border: none;
+    cursor: pointer;   
+    margin-bottom: 5px; 
+}
+
+.dropdown:focus {
+    outline: none;
+}
+
+.options {
+    border: 1px solid #ccc;
+    margin: 5px 10px;
+    position: absolute;
+    z-index: 3; 
+    background-color: white;
+}
+
+.option {
+    padding: 5px;
+}
+
+.option:hover {
+    background-color: #ccc;
+}
+
+.hide {
+    display: none;
+}
+
+.campaign-table {
+    text-align: center;
+}
+
+.campaign-table thead td{
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: rgb(212, 235, 209);
+}
+
+
+.shopping-list-list {
+    text-align: center;
+}
+
+.shopping-list-items {
+    list-style: none;
+    
+}
+
+.shopping-item:hover {
+    cursor: pointer;
+}
+
+.shopping-item:focus{
+    outline: none;
+}
+
+.shopping-item {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    margin: 5px auto;
+    background-color: rgb(240, 238, 238);
+    padding: 0 10px;
+}
+
+
+
+
+.highlight {
+    background-color: cornsilk;
+    color:red
+}
+
+
