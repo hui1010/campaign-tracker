@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface ShoppingItemController {
-    ResponseEntity<List<ShoppingItemDto>> findAll(final String type, final String value);
+    ResponseEntity<List<ShoppingItemDto>> find();
     ResponseEntity<ShoppingItemDto> create(ShoppingItemDto shoppingItemDto);
     ResponseEntity<ShoppingItemDto> update(ShoppingItemDto shoppingItemDto);
     ResponseEntity<Integer> delete(Integer id);

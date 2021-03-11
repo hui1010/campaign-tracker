@@ -1,10 +1,7 @@
 package com.example.campaigntracker.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -21,6 +18,9 @@ public class Campaign {
     private String store;
 
     @Column(nullable = false)
+    private int amount = 1;
+
+    @Column(nullable = false)
     private double price;
 
     @Column(nullable = true)
@@ -29,9 +29,16 @@ public class Campaign {
     @Column(nullable = true)
     private LocalDate dateEnd;
 
-    private boolean meet;
-
     public Campaign() {
+    }
+
+    public Campaign(String name, String store, int amount, double price, LocalDate dateBegin, LocalDate dateEnd) {
+        this.name = name;
+        this.store = store;
+        this.amount = amount;
+        this.price = price;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
     }
 
     public Campaign(String name, String store, double price, LocalDate dateBegin, LocalDate dateEnd) {
@@ -40,23 +47,20 @@ public class Campaign {
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.meet = false;
     }
 
-    public Campaign(String name, String store, double price, LocalDate dateBegin, LocalDate dateEnd, boolean match) {
+    public Campaign(String name, String store, int amount, double price) {
         this.name = name;
         this.store = store;
+        this.amount = amount;
         this.price = price;
-        this.dateBegin = dateBegin;
-        this.dateEnd = dateEnd;
-        this.meet = match;
     }
 
     public Campaign(String name, String store, double price) {
         this.name = name;
         this.store = store;
+        this.amount = 1;
         this.price = price;
-        this.meet = false;
     }
 
     public int getCampaignId() {
@@ -87,6 +91,14 @@ public class Campaign {
         this.price = price;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public LocalDate getDateBegin() {
         return dateBegin;
     }
@@ -103,25 +115,17 @@ public class Campaign {
         this.dateEnd = dateEnd;
     }
 
-    public boolean isMeet() {
-        return meet;
-    }
-
-    public void setMeet(boolean meet) {
-        this.meet = meet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Campaign campaign = (Campaign) o;
-        return Double.compare(campaign.price, price) == 0 && meet == campaign.meet && Objects.equals(name, campaign.name) && Objects.equals(store, campaign.store) && Objects.equals(dateBegin, campaign.dateBegin) && Objects.equals(dateEnd, campaign.dateEnd);
+        return amount == campaign.amount && Double.compare(campaign.price, price) == 0 && Objects.equals(name, campaign.name) && Objects.equals(store, campaign.store) && Objects.equals(dateBegin, campaign.dateBegin) && Objects.equals(dateEnd, campaign.dateEnd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, store, price, dateBegin, dateEnd, meet);
+        return Objects.hash(name, store, amount, price, dateBegin, dateEnd);
     }
 
     @Override
@@ -130,10 +134,10 @@ public class Campaign {
                 "campaignId=" + campaignId +
                 ", name='" + name + '\'' +
                 ", store='" + store + '\'' +
+                ", amount=" + amount +
                 ", price=" + price +
                 ", dateBegin=" + dateBegin +
                 ", dateEnd=" + dateEnd +
-                ", meet=" + meet +
                 '}';
     }
 }

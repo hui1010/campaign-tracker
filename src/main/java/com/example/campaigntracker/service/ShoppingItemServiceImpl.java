@@ -50,9 +50,11 @@ public class ShoppingItemServiceImpl implements ShoppingItemService {
 
     @Override
     @Transactional
-    public ShoppingItemDto create(ShoppingItemDto shoppingItemDto) throws RuntimeException {
+    public ShoppingItemDto create(ShoppingItemDto shoppingItemDto) throws RuntimeException, IllegalArgumentException {
         if(shoppingItemRepository.findByNameIgnoreCase(shoppingItemDto.getName()) != null)
-            throw new RuntimeException("Item already exists");
+            throw new RuntimeException("Item already exists.");
+        if(shoppingItemDto.getName().trim().isEmpty())
+            throw new IllegalArgumentException("Item name should not be empty.");
         ShoppingItem item = new ShoppingItem(shoppingItemDto.getName());
         return getShoppingItemDto(shoppingItemRepository.save(item));
     }
@@ -60,10 +62,12 @@ public class ShoppingItemServiceImpl implements ShoppingItemService {
     @Override
     @Transactional
     public ShoppingItemDto update(ShoppingItemDto shoppingItemDto) throws RuntimeException {
-        if (!shoppingItemRepository.existsById(shoppingItemDto.getShoppingItemId()))
-            throw new RuntimeException("Item does not exist, please create first");
+//        if (!shoppingItemRepository.existsById(shoppingItemDto.getShoppingItemId()))
+//            throw new RuntimeException("Item does not exist, please create first");
+        if(shoppingItemRepository.findByNameIgnoreCase(shoppingItemDto.getName()) != null)
+            throw new RuntimeException("Item already exists");
         ShoppingItem item = shoppingItemRepository.findById(shoppingItemDto.getShoppingItemId()).orElseThrow(
-                () -> new RuntimeException("Cannot find the user.")
+                () -> new RuntimeException("Cannot find the shopping item.")
         );
         if (!item.getName().equalsIgnoreCase(shoppingItemDto.getName()))
             item.setName(shoppingItemDto.getName());

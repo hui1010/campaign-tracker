@@ -16,6 +16,10 @@ public class CampaignDto {
     @Size(min = 1)
     private String store;
 
+    @NotNull(message = "Amount of items is needed")
+    @Positive
+    private Integer amount = 1;
+
     @NotNull(message = "Price is needed")
     @PositiveOrZero
     private Double price;
@@ -23,8 +27,6 @@ public class CampaignDto {
     private LocalDate dateBegin;
 
     private LocalDate dateEnd;
-
-    private Boolean meet;
 
     public CampaignDto() {
     }
@@ -35,31 +37,46 @@ public class CampaignDto {
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.meet = false;
     }
 
     public CampaignDto(String name, String store, Double price) {
         this.name = name;
         this.store = store;
+        this.amount = 1;
         this.price = price;
-        this.meet = false;
     }
 
-    public CampaignDto(Integer campaignId, String name, String store, Double price, LocalDate dateBegin, LocalDate dateEnd) {
+    public CampaignDto(String name, String store, Integer amount, Double price) {
+        this.name = name;
+        this.store = store;
+        this.amount = amount;
+        this.price = price;
+    }
+
+    public CampaignDto( Integer campaignId, String name, String store, Integer amount, Double price, LocalDate dateBegin, LocalDate dateEnd) {
         this.campaignId = campaignId;
         this.name = name;
         this.store = store;
+        this.amount = amount;
         this.price = price;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.meet = false;
+    }
+
+    public CampaignDto(String name, String store, Integer amount, Double price, LocalDate dateBegin, LocalDate dateEnd) {
+        this.name = name;
+        this.store = store;
+        this.amount = amount;
+        this.price = price;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
     }
 
     public Integer getCampaignId() {
         return campaignId;
     }
 
-    public void setCampaignId(int campaignId) {
+    public void setCampaignId(Integer campaignId) {
         this.campaignId = campaignId;
     }
 
@@ -77,6 +94,14 @@ public class CampaignDto {
 
     public void setStore(String store) {
         this.store = store;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Double getPrice() {
@@ -103,25 +128,17 @@ public class CampaignDto {
         this.dateEnd = dateEnd;
     }
 
-    public Boolean getMeet() {
-        return meet;
-    }
-
-    public void setMeet(Boolean meet) {
-        this.meet = meet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CampaignDto that = (CampaignDto) o;
-        return Objects.equals(name, that.name) && Objects.equals(store, that.store) && Objects.equals(price, that.price) && Objects.equals(dateBegin, that.dateBegin) && Objects.equals(dateEnd, that.dateEnd) && Objects.equals(meet, that.meet);
+        return Objects.equals(name, that.name) && Objects.equals(store, that.store) && Objects.equals(amount, that.amount) && Objects.equals(price, that.price) && Objects.equals(dateBegin, that.dateBegin) && Objects.equals(dateEnd, that.dateEnd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, store, price, dateBegin, dateEnd, meet);
+        return Objects.hash(name, store, amount, price, dateBegin, dateEnd);
     }
 
     @Override
@@ -130,10 +147,10 @@ public class CampaignDto {
                 "campaignId=" + campaignId +
                 ", name='" + name + '\'' +
                 ", store='" + store + '\'' +
+                ", amount=" + amount +
                 ", price=" + price +
                 ", dateBegin=" + dateBegin +
                 ", dateEnd=" + dateEnd +
-                ", meet=" + meet +
                 '}';
     }
 }

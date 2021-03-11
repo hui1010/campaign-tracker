@@ -1,7 +1,6 @@
 package com.example.campaigntracker.dto;
 
 import java.util.Objects;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 

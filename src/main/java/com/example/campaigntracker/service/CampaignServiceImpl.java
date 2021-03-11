@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Configurable
@@ -24,10 +27,11 @@ public class CampaignServiceImpl implements CampaignService{
     }
 
     protected CampaignDto getCampaignDto(Campaign campaign) {
-        CampaignDto campaignDto = new CampaignDto();
+        CampaignDto campaignDto = new CampaignDto(campaign.getCampaignId(), campaign.getName(), campaign.getStore(), campaign.getAmount(), campaign.getPrice(), campaign.getDateBegin(), campaign.getDateEnd());
         campaignDto.setCampaignId(campaign.getCampaignId());
         campaignDto.setName(campaign.getName());
         campaignDto.setStore(campaign.getStore());
+        campaignDto.setAmount(campaign.getAmount());
         campaignDto.setPrice(campaign.getPrice());
         campaignDto.setDateBegin(campaign.getDateBegin());
         campaignDto.setDateEnd(campaign.getDateEnd());
@@ -43,13 +47,13 @@ public class CampaignServiceImpl implements CampaignService{
     }
 
     protected Campaign getCampaign(CampaignDto campaignDto){
-
-        return new Campaign(campaignDto.getName(), campaignDto.getStore(), campaignDto.getPrice(), campaignDto.getDateBegin(), campaignDto.getDateEnd());
+        return new Campaign(campaignDto.getName(), campaignDto.getStore(), campaignDto.getAmount(), campaignDto.getPrice(), campaignDto.getDateBegin(), campaignDto.getDateEnd());
     }
 
     @Override
     public List<CampaignDto> findByShoppingItem(String item) {
-        return null;
+        List<Campaign> foundItems = campaignRepository.findAllByNameContainingIgnoreCase(item);
+        return getCampaignDtos(foundItems);
     }
 
     @Override
@@ -61,32 +65,57 @@ public class CampaignServiceImpl implements CampaignService{
     @Override
     @Transactional
     public CampaignDto create(CampaignDto campaignDto) {
-        if (campaignRepository.existsById(campaignDto.getCampaignId()))
-            throw new RuntimeException("Campaign already exists, please update");
+        List<Campaign> campaigns = campaignRepository.findAll();
         Campaign toCreate = new Campaign(campaignDto.getName(), campaignDto.getStore(), campaignDto.getPrice(), campaignDto.getDateBegin(), campaignDto.getDateEnd());
+        List<Campaign> result = campaigns.stream().filter(campaign ->
+            campaign.getName().equals(campaignDto.getName()) && campaign.getStore().equals(campaignDto.getStore()) &&
+        campaign.getAmount() == campaignDto.getAmount() && campaign.getPrice() == campaignDto.getPrice() &&
+        campaign.getDateBegin().isEqual(campaignDto.getDateBegin()) && campaign.getDateEnd().isEqual(campaignDto.getDateEnd())
+        ).collect(Collectors.toList());
+        if(!result.isEmpty())
+            throw new RuntimeException("Campaign already exists");
+        if(campaignDto.getDateEnd().isBefore(campaignDto.getDateBegin()))
+            throw new IllegalArgumentException("End date should not be before begin date.");
         return getCampaignDto(campaignRepository.save(toCreate));
     }
 
     @Override
     @Transactional
-    public CampaignDto update(CampaignDto campaignDto) throws RuntimeException {
-        if (!campaignRepository.existsById(campaignDto.getCampaignId()))
-            throw new RuntimeException("Library user does not exist, please create first");
+    public CampaignDto update(CampaignDto campaignDto) throws RuntimeException, IllegalArgumentException {
+//       if (!campaignRepository.existsById(campaignDto.getCampaignId()))
+//            throw new RuntimeException("Campaign does not exist, please create first");
         Campaign campaign = campaignRepository.findById(campaignDto.getCampaignId()).orElseThrow(
-                () -> new RuntimeException("Cannot find the user.")
+                () -> new RuntimeException("Cannot find the campaign.")
         );
+
+
         if (!campaign.getName().equals(campaignDto.getName()))
             campaign.setName(campaignDto.getName());
         if (!campaign.getStore().equals(campaignDto.getStore()))
-            campaign.setStore(campaign.getStore());
+            campaign.setStore(campaignDto.getStore());
+        if(campaign.getAmount() != campaignDto.getAmount())
+            campaign.setAmount(campaignDto.getAmount());
         if (campaign.getPrice() != campaignDto.getPrice())
             campaign.setPrice(campaignDto.getPrice());
+
+        if(campaignDto.getDateEnd().isBefore(campaignDto.getDateBegin()))
+            throw new IllegalArgumentException("End date should not be before begin date.");
+
         if (!campaign.getDateBegin().isEqual(campaignDto.getDateBegin()))
             campaign.setDateBegin(campaignDto.getDateBegin());
         if (!campaign.getDateEnd().isEqual(campaignDto.getDateEnd()))
             campaign.setDateEnd(campaignDto.getDateEnd());
-        if (campaign.isMeet() != campaignDto.getMeet())
-            campaign.setMeet(campaignDto.getMeet());
+
+        List<Campaign> campaigns = campaignRepository.findAll();
+        List<Campaign> result = campaigns.stream().filter(camp ->
+                camp.getName().equals(campaignDto.getName()) && camp.getStore().equals(campaignDto.getStore()) &&
+                        camp.getAmount() == campaignDto.getAmount() && camp.getPrice() == campaignDto.getPrice() &&
+                        camp.getDateBegin().isEqual(campaignDto.getDateBegin()) && camp.getDateEnd().isEqual(campaignDto.getDateEnd())
+        ).collect(Collectors.toList());
+
+        if(result.size() > 1)
+            throw new RuntimeException("Campaign already exists");
+
         return getCampaignDto(campaignRepository.save(campaign));
     }
 

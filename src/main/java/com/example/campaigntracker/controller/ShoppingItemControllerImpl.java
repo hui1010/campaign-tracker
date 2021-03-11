@@ -5,11 +5,11 @@ import com.example.campaigntracker.service.ShoppingItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 @RestController
@@ -25,26 +25,28 @@ public class ShoppingItemControllerImpl implements ShoppingItemController{
 
     @Override
     @GetMapping
-    public ResponseEntity<List<ShoppingItemDto>> findAll(
-            @RequestParam(name = "type", defaultValue = "all") String type,
-            @RequestParam(name = "value", defaultValue = "all") String value) {
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<List<ShoppingItemDto>> find() {
         return ResponseEntity.ok(itemService.findAll());
     }
 
     @Override
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<ShoppingItemDto> create(@Valid @RequestBody ShoppingItemDto shoppingItemDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(itemService.create(shoppingItemDto));
     }
 
     @Override
     @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<ShoppingItemDto> update(@RequestBody ShoppingItemDto shoppingItemDto) {
         return ResponseEntity.ok(itemService.update(shoppingItemDto));
     }
 
     @Override
     @DeleteMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Integer> delete(@PathVariable Integer id) {
         boolean isRemoved = itemService.delete(id);
         if(!isRemoved) {
