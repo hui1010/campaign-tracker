@@ -16,9 +16,13 @@ import Footer from './components/Footer';
 toast.configure()
 
 function App() {
+  //Local MySQL database for testing
+  // const itemUrl = 'http://localhost:3001/api/items'
+  // const campaignUrl = 'http://localhost:3001/api/campaigns'
 
-  const itemUrl = 'http://localhost:3001/api/items'
-  const campaignUrl = 'http://localhost:3001/api/campaigns'
+  //JawsDB MySQL database for Heroku deployment
+  const itemUrl = 'api/items'
+  const campaignUrl = 'api/campaigns'
   const [campaigns, setCampaigns] = useState([]);
   const [shoppingList, setShoppingList] = useState([]);
   const [query, setQuery] = useState('')
@@ -84,7 +88,7 @@ function App() {
 //    const id = Math.floor(Math.random()*10000);
 //    const newItem = {id, ...item};
 //    setShoppingList([...shoppingList, newItem]);
-     axios.post('api/items', {
+     axios.post(itemUrl, {
         name: item.name
      })
      .then(response => {
