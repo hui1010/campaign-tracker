@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from './Button';
-import AddCampaign from './AddCampaign';
-import AddShoppingList from './AddShoppingItem';
 
-const Header = ({text, showAdd, onAdd}) => {
+
+const Header = ({text, showAdd, onAdd, onEdit}) => {
 
     return (
         <header>

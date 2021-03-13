@@ -12,13 +12,15 @@ const AddShoppingList = ({onAdd}) => {
 
     return (
         <div className="form-wrapper">
-        <form className="form-control" onSubmit={handleSubmit}>
+        <form className="form-control add-list" onSubmit={handleSubmit}>
+            <h4>Add shopping item</h4>
             <div className="item-input">
-                <input type="text" placeholder="Item ..." value={name} onChange={(e) => setName(e.target.value)} autoFocus/>
+                <label>Item</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoFocus/>
             </div>
-            
-               <input className="btn" type="submit" value="Save"/> 
-            
+            <div>
+                <input className="btn input-save" type="submit" value="Save"/>  
+            </div>
         </form>
         </div>
     )

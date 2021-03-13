@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+
 import ShoppingItem from './ShoppingItem';
-import Button from './Button';
+
 
 const ShoppingList = ({list, matched, onEdit, onDelete, onMatchAll, onMatchItem, onCancelMatch}) => {
 
@@ -24,9 +25,9 @@ const ShoppingList = ({list, matched, onEdit, onDelete, onMatchAll, onMatchItem,
             <span>Try clicking on the item, or </span>
             <button className="btn btn-match" onClick={handleClick}>{buttonClicked ? 'Unmatch all' : 'Match all'}</button>
             <ul className="shopping-list-items">
-                {list.map((item) => (<li key={item.id}><ShoppingItem item={item} matched={matched} matchClicked={buttonClicked} onEdit={onEdit} onDelete={onDelete} onMatchItem={onMatchItem} onCancelMatch={onCancelMatch}/></li>))}
+                {list.map((item) => (<li key={item.shoppingItemId}><ShoppingItem item={item} matched={matched} matchClicked={buttonClicked} onEdit={onEdit} onDelete={onDelete} onMatchItem={onMatchItem} onCancelMatch={onCancelMatch}/></li>))}
             </ul>
-        
+
         </div>
     )
 }

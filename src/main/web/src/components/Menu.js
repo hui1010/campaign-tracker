@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Dropdown} from 'semantic-ui-react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import {MdArrowDropDown} from 'react-icons/md'
 
 const Menu = ({sortByEndDate, sortByPrice, sortByName, sortByStore}) => {
     const [menuClicked, setMenuClicked] = useState(false)
@@ -13,14 +14,20 @@ const Menu = ({sortByEndDate, sortByPrice, sortByName, sortByStore}) => {
     }
 
     return (
-            <Dropdown text="Sort by" className="dropdown" onClick={handleClick} onBlur={handleBlur}>
-                <Dropdown.Menu className={`options ${menuClicked ? 'show' : 'hide'}`}>    
-                    <Dropdown.Item className="option" text="End date" onClick={() => {sortByEndDate(); handleClick();}}/>   
-                    <Dropdown.Item className="option" text="Item" onClick={() => {sortByName(); handleClick();}}/>   
-                    <Dropdown.Item className="option" text="Store" onClick={() => {sortByStore(); handleClick();}}/>   
-                    <Dropdown.Item className="option" text="Price" onClick={() => {sortByPrice(); handleClick();}}/>   
+        <div>
+            <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown">
+                    Sort by <MdArrowDropDown size="1rem"/>
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="options">
+                    <Dropdown.Item className="option" onClick={() => {sortByEndDate(); handleClick();}}>End date</Dropdown.Item>
+                    <Dropdown.Item className="option" onClick={() => {sortByName(); handleClick();}}>Name</Dropdown.Item>
+                    <Dropdown.Item className="option" onClick={() => {sortByStore(); handleClick();}}>Store</Dropdown.Item>
+                    <Dropdown.Item className="option" onClick={() => {sortByPrice(); handleClick();}}>price</Dropdown.Item>
                 </Dropdown.Menu>
-            </Dropdown>    
+            </Dropdown>
+
+        </div>
     )
 }
 
