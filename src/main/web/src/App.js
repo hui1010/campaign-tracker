@@ -84,7 +84,7 @@ function App() {
 //    const id = Math.floor(Math.random()*10000);
 //    const newItem = {id, ...item};
 //    setShoppingList([...shoppingList, newItem]);
-     axios.post(itemUrl, {
+     axios.post('api/items', {
         name: item.name
      })
      .then(response => {
