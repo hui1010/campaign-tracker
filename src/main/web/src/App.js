@@ -23,12 +23,14 @@ function App() {
   //JawsDB MySQL database for Heroku deployment
   const itemUrl = 'api/items'
   const campaignUrl = 'api/campaigns'
+  
   const [campaigns, setCampaigns] = useState([]);
   const [shoppingList, setShoppingList] = useState([]);
   const [query, setQuery] = useState('')
   
   useEffect(() => {axios.get(itemUrl).then(response => setShoppingList(response.data))}, [])
   useEffect(() => {axios.get(`${campaignUrl}?type=${query? 'item' : 'all'}&value=${query}`).then(response => setCampaigns(response.data))}, [query])
+  useEffect(() => {sortByStore()}, [])
 
   const addCampaign = (campaign) => {
     axios.post(campaignUrl, {
