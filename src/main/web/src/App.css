@@ -403,6 +403,7 @@ button:focus {
 
     .input-save, .input-cancel {
         padding: 4px !important;
+        width: auto !important;
     } 
 }
 
