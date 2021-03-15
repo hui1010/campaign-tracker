@@ -14,6 +14,7 @@ const AddShoppingList = ({onAdd}) => {
         
         onAdd({name});
         setName('')
+        setError('')
     }
 
     return (
