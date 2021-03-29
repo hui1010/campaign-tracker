@@ -7,6 +7,11 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     color: rgb(73, 71, 71);
     font-size: 16px;
+    min-width: 670px;
+}
+
+#root {
+    position: relative;
 }
 
 ul {
@@ -37,6 +42,7 @@ svg:hover {
     opacity: 0.9;
 }
 
+
 .page-top {
     background-image: url(./images/campaign-tracker-top.png);
     height: 250px; 
@@ -48,18 +54,19 @@ svg:hover {
     display: flex;
     justify-content: space-around;
     margin: 0;
-    overflow: auto;
+    height: 100%;
+
 }
 
 .vertical {
     width: 2px;
-    height: 100vh; 
+    height: 100%; 
     background: linear-gradient( #16a85d, #d8eb2c) ;
     position:absolute; 
     left: 50%;
 }
 
-div.campaigns, div.shopping-list {
+.campaigns, .shopping-list {
     width: 100%; 
     padding: 0 40px;
     height: 100vh;
@@ -307,6 +314,8 @@ button:focus {
     justify-content: center;
     align-items: center;
     line-height: 50px;
+    position: fixed;
+    bottom: 0;
 }
 
 .copyright {
@@ -347,7 +356,7 @@ button:focus {
 }
 
 
-@media(max-width: 820px) and (min-width: 441px) {
+@media(max-width: 860px) and (min-width: 770px) {
     .input-save, .input-cancel {
         padding: 0;
         width: auto;
@@ -355,10 +364,21 @@ button:focus {
     }
     .vertical {
         left: 60%;
-    }
+    }  
 }
 
-@media(max-width: 440px) {
+@media only screen and (max-width: 769px) and (min-width: 541px) {
+    .input-save, .input-cancel {
+        padding: 0;
+        width: auto;
+        margin-bottom: 10px;
+    }
+    .vertical {
+        left: 60%;
+    }  
+}
+
+@media only screen and (max-width: 540px) {
     .page-top {
         background-image: url(./images/campaign-tracker-top-small.png);
         background-size: cover;

@@ -187,29 +187,29 @@ function App() {
         {/* <PageTop /> */}
       </div>
       <div className="container">
-      <div className="campaigns">
-      <Header text="Campaigns" onAdd={showCampaignForm} showAdd={showAddCampaign}/>
-      {showAddCampaign && <AddCampaign onAdd={addCampaign}/>}
-      <Campaigns campaigns={campaigns} 
-        onEdit={handleCampaignEdit} 
-        onDelete={handleCampaignDelete}
-        sortByEndDate={sortByEndDate}
-        sortByPrice={sortByPrice}
-        sortByName={sortByName}
-        sortByStore={sortByStore}
-        matched={matched}
-        matchItem={matchItem}
-        cancelMatch={cancelMatch}
-        showMatchItems={showMatchItems}
-        showAllCampaigns={showAllCampaigns}
-        setQuery={q => setQuery(q)}/> 
-      </div>
-      <div className="vertical"></div>
-      <div className="shopping-list">
-      <Header text="Shopping list" onAdd={showShoppingForm} showAdd={showAddShoppingItem} />
-      {showAddShoppingItem && <AddShoppingItem onAdd={addShoppingItem}/>}
-      {shoppingList.length > 0 ? <ShoppingList list={shoppingList} matched={matched} onEdit={handleListEdit} onDelete={handleListDelete} onMatchAll={matchAll} onMatchItem={matchItem} onCancelMatch={cancelMatch}/> : <p className="blank-text">Click the Add button to add shopping item.</p>}
-      </div>
+        <div className="campaigns">
+        <Header text="Campaigns" onAdd={showCampaignForm} showAdd={showAddCampaign}/>
+        {showAddCampaign && <AddCampaign onAdd={addCampaign}/>}
+        <Campaigns campaigns={campaigns} 
+          onEdit={handleCampaignEdit} 
+          onDelete={handleCampaignDelete}
+          sortByEndDate={sortByEndDate}
+          sortByPrice={sortByPrice}
+          sortByName={sortByName}
+          sortByStore={sortByStore}
+          matched={matched}
+          matchItem={matchItem}
+          cancelMatch={cancelMatch}
+          showMatchItems={showMatchItems}
+          showAllCampaigns={showAllCampaigns}
+          setQuery={q => setQuery(q)}/> 
+        </div>
+        <div className="vertical"></div>
+        <div className="shopping-list">
+          <Header text="Shopping list" onAdd={showShoppingForm} showAdd={showAddShoppingItem} />
+          {showAddShoppingItem && <AddShoppingItem onAdd={addShoppingItem}/>}
+          {shoppingList.length > 0 ? <ShoppingList list={shoppingList} matched={matched} onEdit={handleListEdit} onDelete={handleListDelete} onMatchAll={matchAll} onMatchItem={matchItem} onCancelMatch={cancelMatch}/> : <p className="blank-text">Click the Add button to add shopping item.</p>}
+        </div>
       </div>
       <Footer />
     </>
