@@ -236,7 +236,7 @@ button:focus {
     height: 30px ;
 }
 
-.campaign-table tbody:nth-child(even) {
+.campaign-table tbody tr:nth-child(even) {
     background-color: rgba(212, 235, 209, .6);
 }
 
