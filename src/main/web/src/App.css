@@ -236,7 +236,7 @@ button:focus {
     height: 30px ;
 }
 
-.campaign-table tbody td:nth-child(even) {
+.campaign-table tbody tr:nth-child(even) {
     background-color: rgba(212, 235, 209, .8);
 }
 
@@ -359,7 +359,7 @@ button:focus {
 }
 
 
-@media(max-width: 860px) and (min-width: 701px) {
+@media(max-width: 860px) and (min-width: 721px) {
     .input-save, .input-cancel {
         padding: 0;
         width: auto;
@@ -370,7 +370,7 @@ button:focus {
     }  
 }
 
-@media (max-width: 700px) and (min-width: 541px) {
+@media (max-width: 720px) and (min-width: 541px) {
     .input-save, .input-cancel {
         padding: 0;
         width: auto;
