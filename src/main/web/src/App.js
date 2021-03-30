@@ -17,8 +17,8 @@ toast.configure()
 
 function App() {
   //Local MySQL database for testing
-  // const itemUrl = 'http://localhost:3001/api/items'
-  // const campaignUrl = 'http://localhost:3001/api/campaigns'
+  //  const itemUrl = 'http://localhost:3001/api/items'
+  //  const campaignUrl = 'http://localhost:3001/api/campaigns'
 
   //JawsDB MySQL database for Heroku deployment
   const itemUrl = 'api/items'

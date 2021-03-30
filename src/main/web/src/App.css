@@ -7,7 +7,7 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     color: rgb(73, 71, 71);
     font-size: 16px;
-    min-width: 670px;
+    overflow: scroll;
 }
 
 #root {
@@ -42,7 +42,6 @@ svg:hover {
     opacity: 0.9;
 }
 
-
 .page-top {
     background-image: url(./images/campaign-tracker-top.png);
     height: 250px; 
@@ -54,22 +53,22 @@ svg:hover {
     display: flex;
     justify-content: space-around;
     margin: 0;
-    height: 100%;
-
+    height: auto;
 }
 
 .vertical {
     width: 2px;
     height: 100%; 
     background: linear-gradient( #16a85d, #d8eb2c) ;
-    position:absolute; 
-    left: 50%;
+    position: absolute; 
+    left: calc(100vw - 50%);
 }
 
 .campaigns, .shopping-list {
     width: 100%; 
     padding: 0 40px;
     height: 100vh;
+    padding-bottom: 50px;
 }
 
 header {
@@ -356,25 +355,25 @@ button:focus {
 }
 
 
-@media(max-width: 860px) and (min-width: 770px) {
+@media(max-width: 860px) and (min-width: 701px) {
     .input-save, .input-cancel {
         padding: 0;
         width: auto;
         margin-bottom: 10px;
     }
     .vertical {
-        left: 60%;
+        left: calc(100vw - 40%);
     }  
 }
 
-@media only screen and (max-width: 769px) and (min-width: 541px) {
+@media (max-width: 700px) and (min-width: 541px) {
     .input-save, .input-cancel {
         padding: 0;
         width: auto;
         margin-bottom: 10px;
     }
     .vertical {
-        left: 60%;
+        left: calc(100vw - 30%);
     }  
 }
 
