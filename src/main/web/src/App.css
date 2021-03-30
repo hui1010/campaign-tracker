@@ -236,6 +236,10 @@ button:focus {
     height: 30px ;
 }
 
+.campaign-table tbody td:nth-child(even) {
+    background-color: rgba(212, 235, 209, .8);
+}
+
 .campaign-table tbody td input {
     width: inherit;
     height: inherit;
