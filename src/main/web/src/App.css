@@ -236,8 +236,8 @@ button:focus {
     height: 30px ;
 }
 
-.campaign-table tbody tr:nth-child(even) {
-    background-color: rgba(212, 235, 209, .8);
+.campaign-table tbody:nth-child(even) {
+    background-color: rgba(212, 235, 209, .6);
 }
 
 .campaign-table tbody td input {
@@ -379,7 +379,7 @@ button:focus {
         left: calc(100vw - 30%);
     }  
     .shopping-list-items {
-        width: 70%;
+        width: 70% !important;
     }
 }
 
