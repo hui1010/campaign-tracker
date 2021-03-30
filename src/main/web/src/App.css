@@ -250,8 +250,7 @@ button:focus {
     list-style: none;
     border: 2px solid var(--theme-color);
     border-radius: 5px;
-    width: 50%;
-  
+    width: 50%; 
 }
 
 .shopping-list-items li {
@@ -379,6 +378,9 @@ button:focus {
     .vertical {
         left: calc(100vw - 30%);
     }  
+    .shopping-list-items {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 540px) {
