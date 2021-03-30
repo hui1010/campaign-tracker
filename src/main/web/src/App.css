@@ -53,12 +53,12 @@ svg:hover {
     display: flex;
     justify-content: space-around;
     margin: 0;
-    height: auto;
+    height: 100vh;
 }
 
 .vertical {
     width: 2px;
-    height: 100%; 
+    height: 100vh; 
     background: linear-gradient( #16a85d, #d8eb2c) ;
     position: absolute; 
     left: calc(100vw - 50%);
