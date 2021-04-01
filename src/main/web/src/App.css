@@ -366,7 +366,7 @@ button:focus {
 }
 
 
-@media(max-width: 860px) {
+@media(max-width: 860px) and (min-width: 541px) {
     
     .page-top {
         background-image: url(./images/campaign-tracker-top-small.png);
@@ -375,21 +375,16 @@ button:focus {
         height:100px
     }
     .container {
-        display: block;
+        grid-template-columns: calc((100vw - 2px) / 3 * 2) 2px calc((100vw - 2px) / 3) !important;
     }
     .campaigns, .shopping-list { 
         padding: 5px !important;
         height: auto !important;
         width: 100% !important;
     }
-    .vertical {
-        width: 100%;
-        height: 2px;
-        position: static;
-    }
-    header h1 {
+    /* header h1 {
         text-align: left;
-    }
+    } */
     .campaign-table thead td{
         font-weight: bold;
         padding: 0 !important;
@@ -414,6 +409,14 @@ button:focus {
         padding: 4px !important;
         width: auto !important;
     } 
+}
+
+@media (min-width: 540px) {
+    .container {
+        grid-template-areas: "campaigns" "vertical" "shopping-list" !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 2px 1fr !important;
+    }
 }
 
 
