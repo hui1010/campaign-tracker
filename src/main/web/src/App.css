@@ -366,7 +366,7 @@ button:focus {
 }
 
 
-@media(max-width: 860px) and (min-width: 541px) {
+@media(max-width: 1100px) and (min-width: 541px) {
     
     .page-top {
         background-image: url(./images/campaign-tracker-top-small.png);
