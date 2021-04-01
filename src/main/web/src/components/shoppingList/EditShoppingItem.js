@@ -15,8 +15,8 @@ const EditShoppingItem = ({item, onEdit, setEditClicked}) => {
     }
 
     return (
-        <div className="form-wrapper">
-        <form className="form-control edit-list" onSubmit={handleSubmit} tabIndex="-1" onBlur={handleBlur}>
+        <div className="form-wrapper" tabIndex="-1" onBlur={handleBlur}>
+        <form className="form-control edit-list" onSubmit={handleSubmit} >
             <div className="item-input">
                 <input type="text" placeholder="New name ..." value={name} onChange={(e) => setName(e.target.value)} autoFocus/>
             </div>
