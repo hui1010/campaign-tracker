@@ -375,6 +375,8 @@ button:focus {
         height:100px
     }
     .container {
+        display: grid;
+        grid-template-areas: "campaigns vertical shopping-list" !important;
         grid-template-columns: calc((100vw - 2px) / 3 * 2) 2px calc((100vw - 2px) / 3) !important;
     }
     .campaigns, .shopping-list { 
