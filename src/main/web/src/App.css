@@ -63,7 +63,7 @@ svg:hover {
     background: linear-gradient( #16a85d, #d8eb2c);
     position: relative; 
     left: calc(100vw - 50%); */
-    grid-area: "vertical";
+    grid-area: vertical;
     background: linear-gradient( #16a85d, #d8eb2c);
 }
 
@@ -75,11 +75,11 @@ svg:hover {
 }
 
 .campaigns {
-    grid-area: "campaigns";
+    grid-area: campaigns;
 }
 
 .shoppint-list {
-    grid-area: "shopping-list";
+    grid-area: shopping-list;
 }
 
 header {
