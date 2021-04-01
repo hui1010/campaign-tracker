@@ -411,7 +411,7 @@ button:focus {
     } 
 }
 
-@media (min-width: 540px) {
+@media (max-width: 540px) {
     .container {
         grid-template-areas: "campaigns" "vertical" "shopping-list" !important;
         grid-template-columns: 1fr !important;
