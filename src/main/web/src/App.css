@@ -50,7 +50,8 @@ svg:hover {
 
 .container {
     display: inline-grid;
-    grid-template-areas: "campaigns" "shopping-list";
+    grid-template-areas: "campaigns" "vertical" "shopping-list";
+    grid-template-columns: 1fr 2px 1fr;
     margin: 0;
     height: auto;
     padding-bottom: 50px;
@@ -62,6 +63,8 @@ svg:hover {
     background: linear-gradient( #16a85d, #d8eb2c);
     position: relative; 
     left: calc(100vw - 50%); */
+    grid-area: "vertical";
+    background: linear-gradient( #16a85d, #d8eb2c);
 }
 
 .campaigns, .shopping-list {
@@ -73,12 +76,10 @@ svg:hover {
 
 .campaigns {
     grid-area: "campaigns";
-    border-right: 1px solid linear-gradient( #16a85d, #d8eb2c);
 }
 
 .shoppint-list {
     grid-area: "shopping-list";
-    border-left: 1px solid linear-gradient( #16a85d, #d8eb2c);
 }
 
 header {
