@@ -412,6 +412,12 @@ button:focus {
 }
 
 @media (max-width: 540px) {
+    .vertical {
+        height: 2px !important;
+        width: 100vw !important;
+        background-color: linear-gradient( #16a85d, #d8eb2c);
+        grid-area: vertical;
+    }
     .container {
         grid-template-areas: "campaigns" "vertical" "shopping-list" !important;
         grid-template-columns: 1fr !important;
